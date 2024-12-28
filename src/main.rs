@@ -19,11 +19,12 @@ fn main() {
     let s: f64 = 1.0;
 
     // Simulation loop
-    while t < 1e8 {
+    while t < 3.154e7 {
 
         // Prints state
         println!("{:.2e}", t);
         printout(&actors);
+        println!("\n");
 
         // Applies gravity
         gravity_pairs(&mut actors);
