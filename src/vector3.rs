@@ -5,6 +5,7 @@
 use std::fmt;
 use std::ops::{Add, Sub, Neg, Mul};
 
+#[derive(Copy, Clone, Debug)]
 pub struct Vector3 {
     pub x: f64,
     pub y: f64,
@@ -54,7 +55,7 @@ impl Sub for &Vector3 {
 impl Neg for &Vector3 {
     type Output = Vector3;
 
-    fn neg(self, other: Self) -> Self::Output {
+    fn neg(self) -> Self::Output {
         Vector3 {
             x: -self.x,
             y: -self.y,
@@ -63,8 +64,8 @@ impl Neg for &Vector3 {
     }
 }
 
-impl Mul<f64> for &Vector3 {
-    type Output = Self;
+impl Mul<f64> for Vector3 {
+    type Output = Vector3;
 
     fn mul(self, scalar: f64) -> Self::Output {
         Vector3 {
