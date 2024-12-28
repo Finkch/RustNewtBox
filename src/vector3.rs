@@ -3,6 +3,7 @@
 // Could use a crate for this, but the point is to learn!
 
 use std::fmt;
+use std::ops::{Add, Sub, Neg};
 
 pub struct Vector3 {
     pub x: f64,
@@ -22,6 +23,45 @@ impl Vector3 {
         (self.x.powi(2) + self.y.powi(2) + self.z.powi(2)).sqrt()
     }
 }
+
+
+// Operator overloading
+impl Add for &Vector3 {
+    type Output = Vector3;
+
+    fn add(self, other: Self) -> Self::Output {
+        Vector3 {
+            x: self.x + other.x,
+            y: self.y + other.y,
+            z: self.z + other.z,
+        }
+    }
+}
+
+impl Sub for &Vector3 {
+    type Output = Vector3;
+
+    fn sub(self, other: Self) -> Self::Output {
+        Vector3 {
+            x: self.x - other.x,
+            y: self.y - other.y,
+            z: self.z - other.z,
+        }
+    }
+}
+
+impl Neg for Vector3 {
+    type Output = Vector3;
+
+    fn neg(self, other: Self) -> Self::Output {
+        Vector3 {
+            x: -self.x,
+            y: -self.y,
+            z: -self.z,
+        }
+    }
+}
+
 
 // to string
 impl fmt::Display for Vector3 {
