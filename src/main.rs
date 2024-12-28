@@ -13,8 +13,7 @@ fn main() {
 
     let mut actors = sol_terra();
 
-    println!("{}", actors[0]);
-    println!("{}", actors[1]);
+    printout(&actors);
 }
 
 
@@ -31,4 +30,11 @@ fn gravity(a: &mut Actor, b: &mut Actor) {
 
     a.acc = &a.acc + &(f * b.mass);
     b.acc = &b.acc - &(f * a.mass);
+}
+
+// Prints each actors state in each step
+fn printout(actors: &[Actor]) {
+    for actor in actors.iter() {
+        println!("{}", actor);
+    }
 }
