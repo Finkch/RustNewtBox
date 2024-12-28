@@ -67,7 +67,7 @@ impl Mul<f64> for Vector3 {
     type Output = Self;
 
     fn mul(self, scalar: f64) -> Self::Output {
-        Self {
+        Vector3 {
             x: self.x * scalar,
             y: self.y * scalar,
             z: self.z * scalar,
