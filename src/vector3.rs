@@ -3,7 +3,7 @@
 // Could use a crate for this, but the point is to learn!
 
 use std::fmt;
-use std::ops::{Add, Sub, Neg};
+use std::ops::{Add, Sub, Neg, Mul};
 
 pub struct Vector3 {
     pub x: f64,
@@ -50,6 +50,7 @@ impl Sub for &Vector3 {
     }
 }
 
+
 impl Neg for Vector3 {
     type Output = Vector3;
 
@@ -61,6 +62,19 @@ impl Neg for Vector3 {
         }
     }
 }
+
+impl Mul<f64> for Vector3 {
+    type Output = Self;
+
+    fn mul(self, scalar: f64) -> Self::Output {
+        Self {
+            x: self.x * scalar,
+            y: self.y * scalar,
+            z: self.z * scalar,
+        }
+    }
+}
+
 
 
 // to string
