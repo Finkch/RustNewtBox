@@ -51,7 +51,7 @@ impl Sub for &Vector3 {
 }
 
 
-impl Neg for Vector3 {
+impl Neg for &Vector3 {
     type Output = Vector3;
 
     fn neg(self, other: Self) -> Self::Output {
@@ -63,7 +63,7 @@ impl Neg for Vector3 {
     }
 }
 
-impl Mul<f64> for Vector3 {
+impl Mul<f64> for &Vector3 {
     type Output = Self;
 
     fn mul(self, scalar: f64) -> Self::Output {
