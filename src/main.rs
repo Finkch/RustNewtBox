@@ -4,14 +4,17 @@
 
 mod actor;
 mod vector3;
+mod solarsystems;
 
 use actor::Actor;
+use solarsystems::sol_terra;
 
 fn main() {
 
-    let actor = Actor::new("Terra", 1e4, 1e4);
+    let mut actors = sol_terra();
 
-    println!("{}", actor);
+    println!("{}", actors[0]);
+    println!("{}", actors[1]);
 }
 
 
@@ -20,10 +23,12 @@ fn gravity(a: &mut Actor, b: &mut Actor) {
 
     let g = 6.67430e-11;
 
-    let r = a.pos - b.pos;
+    let r = &a.pos - &b.pos;
 
-    let f = g / r.mag().powi(3) * r;
+    let d = &r.mag();
 
-    a.acc = a.acc + f * b.mass;
-    b.acc = b.acc - f * a.mass;
+    let f = r * (g / d.powi(3));
+
+    a.acc = &a.acc + &(f * b.mass);
+    b.acc = &b.acc - &(f * a.mass);
 }
