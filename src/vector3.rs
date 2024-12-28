@@ -3,7 +3,7 @@
 // Could use a crate for this, but the point is to learn!
 
 use std::fmt;
-use std::ops::{Add, Sub, Neg, Mul};
+use std::ops::{Add, Sub, Neg, Mul, AddAssign, SubAssign};
 
 #[derive(Copy, Clone, Debug)]
 pub struct Vector3 {
@@ -48,6 +48,23 @@ impl Sub for &Vector3 {
             y: self.y - other.y,
             z: self.z - other.z,
         }
+    }
+}
+
+
+impl AddAssign for Vector3 {
+    fn add_assign(&mut self, other: Self) {
+        self.x += other.x;
+        self.y += other.y;
+        self.z += other.z;
+    }
+}
+
+impl SubAssign for Vector3 {
+    fn sub_assign(&mut self, other: Self) {
+        self.x -= other.x;
+        self.y -= other.y;
+        self.z -= other.z;
     }
 }
 
