@@ -1,6 +1,6 @@
 // A place to store various solar systems
 
-use actor::Actor;
+use crate::actor::Actor;
 
 const AU: f64 = 1.496e11;
 const G:  f64 = 6.67430e-11;
@@ -22,21 +22,21 @@ fn vis_viva(parent: &Actor, r: f64) -> f64 {
 
 // Simple sun-earth system
 pub fn sol_terra() -> [Actor; 2] {
-    let actors = [
-        Actor {
-            name: "Sol",
-            mass: MS,
-            radius: RS,
-        },
-        Actor{
-            name: "Terra",
-            mass: ME,
-            radius: RE,
-        },
+    let mut actors = [
+        Actor::new(
+            "Sol",
+            MS,
+            RS,
+        ),
+        Actor::new(
+            "Terra",
+            ME,
+            RE,
+        ),
     ];
 
     actors[1].pos.x = AU;
-    actors[1].vel.y = vis_viva(actors[0], AU);
+    actors[1].vel.y = vis_viva(&actors[0], AU);
 
     return actors;
 }
