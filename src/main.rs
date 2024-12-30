@@ -9,6 +9,8 @@ mod solarsystems;
 use actor::Actor;
 use solarsystems::sol_terra;
 
+use std::time::Instant;
+
 fn main() {
 
     // Gets a set of actors
@@ -18,13 +20,19 @@ fn main() {
     let mut t: f64 = 0.0;
     let s: f64 = 1.0;
 
+    let do_printout = false;
+
+    let start = Instant::now();
+
     // Simulation loop
     while t < 3.154e7 {
 
         // Prints state
-        println!("{:.2e}", t);
-        printout(&actors);
-        println!("\n");
+        if do_printout {
+            println!("{:.2e}", t);
+            printout(&actors);
+            println!("\n");
+        }
 
         // Applies gravity
         gravity_pairs(&mut actors);
@@ -38,6 +46,9 @@ fn main() {
         t += s;
 
     }
+
+    let duration = start.elapsed();
+    println!("Time taken: {:?}", duration);
 }
 
 
